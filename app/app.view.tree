@@ -1,0 +1,14 @@
+$our_app $mol_book2_catalog
+	menu_title \Нашы игры
+	param \page
+	menu_foot /
+		<= GitHub $mol_link_source uri \https://github.com/Lyumih/story
+		<= Telegram $mol_link
+			sub / <= Telegram_icon $mol_icon_telegram
+			uri \https://t.me/h_y_o_o/4484
+	spreads *
+		- auth <= Auth $mol_page
+		shows <= Shows $mol_page
+			title \Шоу
+		games <= Games $mol_page
+			title \Игры
