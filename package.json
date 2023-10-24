@@ -204,7 +204,12 @@
     "$mol_embed_youtube",
     "$mol_icon_youtube",
     "$mol_frame",
-    "$our_app_dev"
+    "$our_app_dev",
+    "$mol_button_major",
+    "$mol_form",
+    "$mol_form_field",
+    "$mol_labeler",
+    "$mol_row"
   ],
   "dependencies": {
     "jsdom": "*",

@@ -2762,12 +2762,113 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_button_major extends $mol_button_typed {
+        attr(): Record<string, any>;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_labeler extends $mol_list {
+        rows(): readonly any[];
+        label(): readonly $mol_view_content[];
+        Label(): $mol_view;
+        content(): readonly any[];
+        Content(): $mol_view;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_form_field extends $mol_labeler {
+        bids(): readonly string[];
+        label(): readonly any[];
+        content(): readonly any[];
+        name(): string;
+        bid(): string;
+        Bid(): $mol_view;
+        control(): any;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_form_field extends $.$mol_form_field {
+        bid(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_form extends $mol_list {
+        submit_allowed(): boolean;
+        submit_blocked(): boolean;
+        event(): Record<string, any>;
+        submit(event?: any): any;
+        rows(): readonly any[];
+        keydown(event?: any): any;
+        form_fields(): readonly $mol_form_field[];
+        body(): readonly $mol_form_field[];
+        Body(): $$.$mol_list;
+        buttons(): readonly $mol_view[];
+        foot(): readonly $mol_view[];
+        Foot(): $mol_row;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_form extends $.$mol_form {
+        form_fields(): readonly $mol_form_field[];
+        submit_allowed(): boolean;
+        submit_blocked(): boolean;
+        keydown(next: KeyboardEvent): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $our_app_dev extends $mol_book2_catalog {
         menu_title(): string;
         param(): string;
         spreads(): Record<string, any>;
-        Profile(): $mol_page;
+        Name_control(): $$.$mol_string;
+        Country_control(): $$.$mol_string;
+        Telegram_control(): $$.$mol_string;
+        Update_profile(): $mol_button_major;
+        Profile_form(): $$.$mol_form;
+        Profile_page(): $mol_page;
+        Game_1(): $$.$mol_text;
+        Game_2(): $$.$mol_text;
+        Game_list(): $$.$mol_list;
+        Game_name_control(): $$.$mol_string;
+        Game_genre_control(): $$.$mol_string;
+        Game_description_control(): $$.$mol_string;
+        Game_social_control(): $$.$mol_string;
+        Game_youtube_control(): $$.$mol_string;
+        Game_steam_control(): $$.$mol_string;
+        Game_vk_control(): $$.$mol_string;
+        Game_date_control(): $$.$mol_string;
+        Game_add(): $mol_button_major;
+        Game_show(): $mol_button_minor;
+        Game_form(): $$.$mol_form;
         Games(): $mol_page;
+        Show_text(): $$.$mol_text;
+        Update_show(): $mol_button_major;
         Show(): $mol_page;
     }
 }
