@@ -3085,6 +3085,8 @@ declare namespace $ {
         Games(): $mol_page;
         Dev(): $our_app_dev;
         Org(): $our_app_org;
+        About_text(): $$.$mol_text;
+        About(): $mol_page;
     }
 }
 

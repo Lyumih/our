@@ -10278,7 +10278,8 @@ var $;
                 show: this.Show(),
                 games: this.Games(),
                 dev: this.Dev(),
-                org: this.Org()
+                org: this.Org(),
+                about: this.About()
             };
         }
         GitHub() {
@@ -10332,6 +10333,19 @@ var $;
             const obj = new this.$.$our_app_org();
             return obj;
         }
+        About_text() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "# Наши\nНаши - это платформа для проведения игровых шоу, которая помогает соединить зрителей, разработчиков и организаторов игр.\n**Зритель** - может посмотреть ближайшие игровые шоу, которые будут проходить и игры, которые будут в них принимать участия\n**Разработчик** - может зарегистрироваться и подать заявку на участие в шоу со своей игрой и получить обратную связь\n**Организация** - может в удобной форме обработать заявки и дать обратную связь по игре для шоу";
+            return obj;
+        }
+        About() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Наши";
+            obj.body = () => [
+                this.About_text()
+            ];
+            return obj;
+        }
     }
     __decorate([
         $mol_mem
@@ -10360,6 +10374,12 @@ var $;
     __decorate([
         $mol_mem
     ], $our_app.prototype, "Org", null);
+    __decorate([
+        $mol_mem
+    ], $our_app.prototype, "About_text", null);
+    __decorate([
+        $mol_mem
+    ], $our_app.prototype, "About", null);
     $.$our_app = $our_app;
 })($ || ($ = {}));
 //our/app/-view.tree/app.view.tree.ts
