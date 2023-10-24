@@ -10456,9 +10456,437 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_textarea extends $mol_stack {
+        attr() {
+            return {
+                ...super.attr(),
+                mol_textarea_clickable: this.clickable(),
+                mol_textarea_sidebar_showed: this.sidebar_showed()
+            };
+        }
+        event() {
+            return {
+                keydown: (event) => this.press(event),
+                pointermove: (event) => this.hover(event)
+            };
+        }
+        sub() {
+            return [
+                this.Edit(),
+                this.View()
+            ];
+        }
+        symbols_alt() {
+            return {
+                comma: "<",
+                period: ">",
+                dash: "−",
+                equals: "≈",
+                graveAccent: "́",
+                forwardSlash: "÷",
+                E: "€",
+                X: "×",
+                C: "©",
+                P: "§",
+                H: "₽",
+                key0: "°",
+                key8: "•",
+                key2: "@",
+                key3: "#",
+                key4: "$",
+                key6: "^",
+                key7: "&",
+                bracketOpen: "[",
+                bracketClose: "]",
+                slashBack: "|"
+            };
+        }
+        symbols_alt_shift() {
+            return {
+                V: "✅",
+                X: "❌",
+                O: "⭕",
+                key1: "❗",
+                key4: "💲",
+                key7: "❓",
+                comma: "«",
+                period: "»",
+                semicolon: "“",
+                quoteSingle: "”",
+                dash: "—",
+                equals: "≠",
+                graveAccent: "̱",
+                bracketOpen: "{",
+                bracketClose: "}"
+            };
+        }
+        clickable(next) {
+            if (next !== undefined)
+                return next;
+            return false;
+        }
+        sidebar_showed() {
+            return false;
+        }
+        press(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        hover(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        value(next) {
+            if (next !== undefined)
+                return next;
+            return "";
+        }
+        hint() {
+            return " ";
+        }
+        enabled() {
+            return true;
+        }
+        spellcheck() {
+            return true;
+        }
+        length_max() {
+            return +Infinity;
+        }
+        selection(next) {
+            if (next !== undefined)
+                return next;
+            return [];
+        }
+        submit(next) {
+            if (next !== undefined)
+                return next;
+            return null;
+        }
+        submit_with_ctrl() {
+            return true;
+        }
+        bring() {
+            return this.Edit().bring();
+        }
+        Edit() {
+            const obj = new this.$.$mol_textarea_edit();
+            obj.value = (next) => this.value(next);
+            obj.hint = () => this.hint();
+            obj.enabled = () => this.enabled();
+            obj.spellcheck = () => this.spellcheck();
+            obj.length_max = () => this.length_max();
+            obj.selection = (next) => this.selection(next);
+            obj.submit = (next) => this.submit(next);
+            obj.submit_with_ctrl = () => this.submit_with_ctrl();
+            return obj;
+        }
+        row_numb(id) {
+            return 0;
+        }
+        highlight() {
+            return "";
+        }
+        View() {
+            const obj = new this.$.$mol_text_code();
+            obj.text = () => this.value();
+            obj.render_visible_only = () => false;
+            obj.row_numb = (id) => this.row_numb(id);
+            obj.sidebar_showed = () => this.sidebar_showed();
+            obj.highlight = () => this.highlight();
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_textarea.prototype, "clickable", null);
+    __decorate([
+        $mol_mem
+    ], $mol_textarea.prototype, "press", null);
+    __decorate([
+        $mol_mem
+    ], $mol_textarea.prototype, "hover", null);
+    __decorate([
+        $mol_mem
+    ], $mol_textarea.prototype, "value", null);
+    __decorate([
+        $mol_mem
+    ], $mol_textarea.prototype, "selection", null);
+    __decorate([
+        $mol_mem
+    ], $mol_textarea.prototype, "submit", null);
+    __decorate([
+        $mol_mem
+    ], $mol_textarea.prototype, "Edit", null);
+    __decorate([
+        $mol_mem
+    ], $mol_textarea.prototype, "View", null);
+    $.$mol_textarea = $mol_textarea;
+    class $mol_textarea_edit extends $mol_string {
+        dom_name() {
+            return "textarea";
+        }
+        enter() {
+            return "enter";
+        }
+        field() {
+            return {
+                ...super.field(),
+                scrollTop: 0
+            };
+        }
+    }
+    $.$mol_textarea_edit = $mol_textarea_edit;
+})($ || ($ = {}));
+//mol/textarea/-view.tree/textarea.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_textarea extends $.$mol_textarea {
+            indent_inc() {
+                let text = this.value();
+                let [from, to] = this.selection();
+                const rows = text.split('\n');
+                let start = 0;
+                for (let i = 0; i < rows.length; ++i) {
+                    let end = start + rows[i].length;
+                    if (end >= from && start <= to) {
+                        if (to === from || start !== to) {
+                            rows[i] = '\t' + rows[i];
+                            to += 1;
+                            end += 1;
+                        }
+                    }
+                    start = end + 1;
+                }
+                this.value(rows.join('\n'));
+                this.selection([from + 1, to]);
+            }
+            indent_dec() {
+                let text = this.value();
+                let [from, to] = this.selection();
+                const rows = text.split('\n');
+                let start = 0;
+                for (let i = 0; i < rows.length; ++i) {
+                    const end = start + rows[i].length;
+                    if (end >= from && start <= to && rows[i].startsWith('\t')) {
+                        rows[i] = rows[i].slice(1);
+                        to -= 1;
+                        if (start < from)
+                            from -= 1;
+                    }
+                    start = end + 1;
+                }
+                this.value(rows.join('\n'));
+                this.selection([from, to]);
+            }
+            symbol_insert(event) {
+                const symbol = event.shiftKey
+                    ? this.symbols_alt_shift()[$mol_keyboard_code[event.keyCode]]
+                    : this.symbols_alt()[$mol_keyboard_code[event.keyCode]];
+                if (!symbol)
+                    return;
+                document.execCommand('insertText', false, symbol);
+            }
+            hover(event) {
+                this.clickable(event.ctrlKey);
+            }
+            press(event) {
+                if (event.altKey && !event.ctrlKey) {
+                    this.symbol_insert(event);
+                }
+                else {
+                    switch (event.keyCode) {
+                        case !event.shiftKey && $mol_keyboard_code.tab:
+                            this.indent_inc();
+                            break;
+                        case event.shiftKey && $mol_keyboard_code.tab:
+                            this.indent_dec();
+                            break;
+                        default: return;
+                    }
+                }
+                event.preventDefault();
+            }
+            row_numb(index) {
+                return index;
+            }
+        }
+        $$.$mol_textarea = $mol_textarea;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//mol/textarea/textarea.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/textarea/textarea.view.css", "[mol_textarea] {\n\tflex: 1 0 auto;\n\tflex-direction: column;\n\tvertical-align: top;\n\tmin-height: max-content;\n\twhite-space: pre-wrap;\n\tword-break: break-word;\n\tborder-radius: var(--mol_gap_round);\n\tfont-family: monospace;\n\tposition: relative;\n\ttab-size: 4;\n}\n\n[mol_textarea_view] {\n\tpointer-events: none;\n\twhite-space: inherit;\n\tfont-family: inherit;\n\ttab-size: inherit;\n}\n\n[mol_textarea_view_copy] {\n\tpointer-events: all;\n}\n\n[mol_textarea_clickable] > [mol_textarea_view] {\n\tpointer-events: all;\n}\n\n[mol_textarea_edit] {\n\tfont-family: inherit;\n\tpadding: var(--mol_gap_text);\n\tcolor: transparent !important;\n\tcaret-color: var(--mol_theme_text);\n\tresize: none;\n\ttext-align: inherit;\n\twhite-space: inherit;\n\tborder-radius: inherit;\n\toverflow-anchor: none;\n\tposition: absolute;\n\theight: 100%;\n\twidth: 100%;\n\ttab-size: inherit;\n}\n\n[mol_textarea_sidebar_showed] [mol_textarea_edit] {\n\tleft: 1.75rem;\n\twidth: calc( 100% - 1.75rem );\n}\n\n[mol_textarea_edit]:hover + [mol_textarea_view] {\n\tz-index: var(--mol_layer_hover);\n}\n\n[mol_textarea_edit]:focus + [mol_textarea_view] {\n\tz-index: var(--mol_layer_focus);\n}\n");
+})($ || ($ = {}));
+//mol/textarea/-css/textarea.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $our_app_org extends $mol_book2_catalog {
+        menu_title() {
+            return "Организаторы**";
+        }
+        spreads() {
+            return {
+                show: this.Show(),
+                games: this.Games(),
+                feedback: this.Feedback(),
+                request: this.Request()
+            };
+        }
+        Show_text() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Шоу:\n- Нашы Игры 2023\n- Нашы Игры 2024";
+            return obj;
+        }
+        Show_add() {
+            const obj = new this.$.$mol_button_major();
+            obj.title = () => "Добавить шоу";
+            return obj;
+        }
+        Show() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Шоу";
+            obj.body = () => [
+                this.Show_text(),
+                this.Show_add()
+            ];
+            return obj;
+        }
+        Game_1() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Василиса и Баба яга";
+            return obj;
+        }
+        Game_feedback() {
+            const obj = new this.$.$mol_textarea();
+            obj.hint = () => "Обратную связь";
+            return obj;
+        }
+        Game_feedback_add() {
+            const obj = new this.$.$mol_button_major();
+            obj.title = () => "Дать обратную связь";
+            return obj;
+        }
+        Games_list() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Game_1(),
+                this.Game_feedback(),
+                this.Game_feedback_add()
+            ];
+            return obj;
+        }
+        Games() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Игры";
+            obj.body = () => [
+                this.Games_list()
+            ];
+            return obj;
+        }
+        Feedback_text() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Последняя обратная связь";
+            return obj;
+        }
+        Feedback_game() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Василиса и Баба яга. Обратная связь получена";
+            return obj;
+        }
+        Feedback_list() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Feedback_game()
+            ];
+            return obj;
+        }
+        Feedback() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Обратная связь";
+            obj.body = () => [
+                this.Feedback_text(),
+                this.Feedback_list()
+            ];
+            return obj;
+        }
+        Request_text() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Заявки игр на участие в шоу\n- Василиса и Кот учёный. Ожидает подтверждения";
+            return obj;
+        }
+        Request() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Заявки";
+            obj.body = () => [
+                this.Request_text()
+            ];
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Show_text", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Show_add", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Show", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Game_1", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Game_feedback", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Game_feedback_add", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Games_list", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Games", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Feedback_text", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Feedback_game", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Feedback_list", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Feedback", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Request_text", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_org.prototype, "Request", null);
+    $.$our_app_org = $our_app_org;
+})($ || ($ = {}));
+//our/app/org/-view.tree/org.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $our_app extends $mol_book2_catalog {
         menu_title() {
-            return "Нашы игры";
+            return "Нашы Игры";
         }
         param() {
             return "page";
@@ -10496,7 +10924,7 @@ var $;
         }
         Show_text() {
             const obj = new this.$.$mol_text();
-            obj.text = () => "Список шоу, которые проходят и будут проходить в ближайшее время\n- Нашы игры 2024\n(список игр и их статус)\n- Нашы игры 2023\n(список игр и их статус)";
+            obj.text = () => "Список шоу, которые проходят и будут проходить в ближайшее время\n- Нашы игры 2024\n(список игр и их статус)\n- Нашы игры 2023\n- [Василиса и Баба Яга](https://store.steampowered.com/app/2331070/_/). Нашы игры 2023. Финал\n- [SKIBIDI: ESCAPE FROM TOILETS!](https://store.steampowered.com/app/2497560/SKIBIDI_ESCAPE_FROM_TOILETS/). Нашы игры 2023. 2 поток";
             return obj;
         }
         Show() {
@@ -10509,7 +10937,7 @@ var $;
         }
         Game_text() {
             const obj = new this.$.$mol_text();
-            obj.text = () => "Список игр, которые будут участвовать в шоу\n- [Василиса и Баба Яга](https://store.steampowered.com/app/2331070/_/). Нашы игры 2023\n- [SKIBIDI: ESCAPE FROM TOILETS!](https://store.steampowered.com/app/2497560/SKIBIDI_ESCAPE_FROM_TOILETS/). Нашы игры 2023";
+            obj.text = () => "Список игр, которые будут участвовать в шоу\n- [Василиса и Баба Яга](https://store.steampowered.com/app/2331070/_/). Нашы игры 2023\n- [Василиса и Кот учёный](https://store.steampowered.com/app/2331070/_/).";
             return obj;
         }
         Games() {
@@ -10525,8 +10953,7 @@ var $;
             return obj;
         }
         Org() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Организаторы**";
+            const obj = new this.$.$our_app_org();
             return obj;
         }
     }

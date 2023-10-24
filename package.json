@@ -209,7 +209,9 @@
     "$mol_form",
     "$mol_form_field",
     "$mol_labeler",
-    "$mol_row"
+    "$mol_row",
+    "$our_app_org",
+    "$mol_textarea"
   ],
   "dependencies": {
     "jsdom": "*",

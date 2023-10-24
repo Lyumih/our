@@ -3004,6 +3004,73 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_textarea extends $mol_stack {
+        attr(): Record<string, any>;
+        event(): Record<string, any>;
+        sub(): readonly any[];
+        symbols_alt(): Record<string, any>;
+        symbols_alt_shift(): Record<string, any>;
+        clickable(next?: any): boolean;
+        sidebar_showed(): boolean;
+        press(event?: any): any;
+        hover(event?: any): any;
+        value(next?: any): string;
+        hint(): string;
+        enabled(): boolean;
+        spellcheck(): boolean;
+        length_max(): number;
+        selection(next?: any): readonly number[];
+        submit(next?: any): any;
+        submit_with_ctrl(): boolean;
+        bring(): void;
+        Edit(): $mol_textarea_edit;
+        row_numb(id: any): number;
+        highlight(): string;
+        View(): $$.$mol_text_code;
+    }
+    class $mol_textarea_edit extends $mol_string {
+        dom_name(): string;
+        enter(): string;
+        field(): Record<string, any>;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_textarea extends $.$mol_textarea {
+        indent_inc(): void;
+        indent_dec(): void;
+        symbol_insert(event: KeyboardEvent): void;
+        hover(event: PointerEvent): void;
+        press(event: KeyboardEvent): void;
+        row_numb(index: number): number;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $our_app_org extends $mol_book2_catalog {
+        menu_title(): string;
+        spreads(): Record<string, any>;
+        Show_text(): $$.$mol_text;
+        Show_add(): $mol_button_major;
+        Show(): $mol_page;
+        Game_1(): $$.$mol_text;
+        Game_feedback(): $$.$mol_textarea;
+        Game_feedback_add(): $mol_button_major;
+        Games_list(): $$.$mol_list;
+        Games(): $mol_page;
+        Feedback_text(): $$.$mol_text;
+        Feedback_game(): $$.$mol_text;
+        Feedback_list(): $$.$mol_list;
+        Feedback(): $mol_page;
+        Request_text(): $$.$mol_text;
+        Request(): $mol_page;
+    }
+}
+
+declare namespace $ {
     class $our_app extends $mol_book2_catalog {
         menu_title(): string;
         param(): string;
@@ -3017,7 +3084,7 @@ declare namespace $ {
         Game_text(): $$.$mol_text;
         Games(): $mol_page;
         Dev(): $our_app_dev;
-        Org(): $mol_page;
+        Org(): $our_app_org;
     }
 }
 
