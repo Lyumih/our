@@ -1,0 +1,32 @@
+$our_app_org $mol_book2_catalog
+	menu_title \Организаторы**
+	spreads *
+		show <= Show $mol_page
+			title \Шоу
+			body /
+				<= Show_text $mol_text text \
+					\Шоу:
+					\- Нашы Игры 2023
+					\- Нашы Игры 2024
+				<= Show_add $mol_button_major title \Добавить шоу
+		games <= Games $mol_page
+			title \Игры
+			body /
+				<= Games_list $mol_list rows /
+					<= Game_1 $mol_text text \Василиса и Баба яга
+					<= Game_feedback $mol_textarea
+						hint \Обратную связь
+					<= Game_feedback_add $mol_button_major
+						title \Дать обратную связь
+		feedback <= Feedback $mol_page
+			title \Обратная связь
+			body /
+				<= Feedback_text $mol_text text \Последняя обратная связь
+				<= Feedback_list $mol_list rows /
+					<= Feedback_game $mol_text text \Василиса и Баба яга. Обратная связь получена
+		request <= Request $mol_page
+			title \Заявки
+			body /
+				<= Request_text $mol_text text \
+					\Заявки игр на участие в шоу
+					\- Василиса и Кот учёный. Ожидает подтверждения

@@ -1,5 +1,5 @@
 $our_app $mol_book2_catalog
-	menu_title \Нашы игры
+	menu_title \Нашы Игры
 	param \page
 	menu_foot /
 		<= GitHub $mol_link_source uri \https://github.com/Lyumih/our
@@ -16,16 +16,16 @@ $our_app $mol_book2_catalog
 				\- Нашы игры 2024
 				\(список игр и их статус)
 				\- Нашы игры 2023
-				\(список игр и их статус)
+				\- [Василиса и Баба Яга](https://store.steampowered.com/app/2331070/_/). Нашы игры 2023. Финал
+				\- [SKIBIDI: ESCAPE FROM TOILETS!](https://store.steampowered.com/app/2497560/SKIBIDI_ESCAPE_FROM_TOILETS/). Нашы игры 2023. 2 поток
 		- Список игр, которые доступны в шоу
 		games <= Games $mol_page
 			title \Игры
 			body / <= Game_text $mol_text text \
 				\Список игр, которые будут участвовать в шоу
 				\- [Василиса и Баба Яга](https://store.steampowered.com/app/2331070/_/). Нашы игры 2023
-				\- [SKIBIDI: ESCAPE FROM TOILETS!](https://store.steampowered.com/app/2497560/SKIBIDI_ESCAPE_FROM_TOILETS/). Нашы игры 2023
+				\- [Василиса и Кот учёный](https://store.steampowered.com/app/2331070/_/).
 		- Профиль разработчика для добавления игр в шоу
 		dev <= Dev $our_app_dev
 		- Профиль организаторов. Список игр, статус шоу, обратная связь
-		org <= Org $mol_page
-			title \Организаторы**
+		org <= Org $our_app_org
