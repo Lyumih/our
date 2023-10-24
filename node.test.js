@@ -10023,7 +10023,7 @@ var $;
         }
         Show_text() {
             const obj = new this.$.$mol_text();
-            obj.text = () => "Список шоу, которые проходят и будут проходить в ближайшее время";
+            obj.text = () => "Список шоу, которые проходят и будут проходить в ближайшее время\n- Нашы игры 2024\n- Нашы игры 2023";
             return obj;
         }
         Show() {
@@ -10036,7 +10036,7 @@ var $;
         }
         Game_text() {
             const obj = new this.$.$mol_text();
-            obj.text = () => "Список игр, которые будут участвовать в шоу";
+            obj.text = () => "Список игр, которые будут участвовать в шоу\n- [Василиса и Баба Яга](https://store.steampowered.com/app/2331070/_/). Нашы игры 2023\n- [SKIBIDI: ESCAPE FROM TOILETS!](https://store.steampowered.com/app/2497560/SKIBIDI_ESCAPE_FROM_TOILETS/). Нашы игры 2023";
             return obj;
         }
         Games() {
@@ -10053,7 +10053,7 @@ var $;
         }
         Org() {
             const obj = new this.$.$mol_page();
-            obj.title = () => "Организатор**";
+            obj.title = () => "Организаторы**";
             return obj;
         }
     }
