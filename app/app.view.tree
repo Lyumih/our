@@ -2,7 +2,7 @@ $our_app $mol_book2_catalog
 	menu_title \Нашы игры
 	param \page
 	menu_foot /
-		<= GitHub $mol_link_source uri \https://github.com/Lyumih/story
+		<= GitHub $mol_link_source uri \https://github.com/Lyumih/our
 		<= Telegram $mol_link
 			sub / <= Telegram_icon $mol_icon_telegram
 			uri \https://t.me/h_y_o_o/4484
