@@ -9937,6 +9937,52 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $our_app_dev extends $mol_book2_catalog {
+        menu_title() {
+            return "Разработчик*";
+        }
+        param() {
+            return "dev";
+        }
+        spreads() {
+            return {
+                profile: this.Profile(),
+                games: this.Games(),
+                show: this.Show()
+            };
+        }
+        Profile() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Профиль";
+            return obj;
+        }
+        Games() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Игры";
+            return obj;
+        }
+        Show() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Шоу";
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $our_app_dev.prototype, "Profile", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_dev.prototype, "Games", null);
+    __decorate([
+        $mol_mem
+    ], $our_app_dev.prototype, "Show", null);
+    $.$our_app_dev = $our_app_dev;
+})($ || ($ = {}));
+//our/app/dev/-view.tree/dev.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $our_app extends $mol_book2_catalog {
         menu_title() {
             return "Нашы игры";
@@ -10002,13 +10048,12 @@ var $;
             return obj;
         }
         Dev() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Разработчик";
+            const obj = new this.$.$our_app_dev();
             return obj;
         }
         Org() {
             const obj = new this.$.$mol_page();
-            obj.title = () => "Организатор";
+            obj.title = () => "Организатор**";
             return obj;
         }
     }

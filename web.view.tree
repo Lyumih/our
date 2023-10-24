@@ -662,6 +662,17 @@ $mol_text_span $mol_paragraph
 		^
 		mol_text_type <= type \
 
+$our_app_dev $mol_book2_catalog
+	menu_title \Разработчик*
+	param \dev
+	spreads *
+		profile <= Profile $mol_page
+			title \Профиль
+		games <= Games $mol_page
+			title \Игры
+		show <= Show $mol_page
+			title \Шоу
+
 $mol_text_list $mol_text
 	auto_scroll null
 	attr *
@@ -695,8 +706,7 @@ $our_app $mol_book2_catalog
 			title \Игры
 			body / <= Game_text $mol_text text \Список игр, которые будут участвовать в шоу
 		- Профиль разработчика для добавления игр в шоу
-		dev <= Dev $mol_page
-			title \Разработчик
+		dev <= Dev $our_app_dev
 		- Профиль организаторов. Список игр, статус шоу, обратная связь
 		org <= Org $mol_page
-			title \Организатор
+			title \Организатор**

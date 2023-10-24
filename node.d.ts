@@ -2892,6 +2892,17 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $our_app_dev extends $mol_book2_catalog {
+        menu_title(): string;
+        param(): string;
+        spreads(): Record<string, any>;
+        Profile(): $mol_page;
+        Games(): $mol_page;
+        Show(): $mol_page;
+    }
+}
+
+declare namespace $ {
     class $our_app extends $mol_book2_catalog {
         menu_title(): string;
         param(): string;
@@ -2904,7 +2915,7 @@ declare namespace $ {
         Show(): $mol_page;
         Game_text(): $$.$mol_text;
         Games(): $mol_page;
-        Dev(): $mol_page;
+        Dev(): $our_app_dev;
         Org(): $mol_page;
     }
 }
