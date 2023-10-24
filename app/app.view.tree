@@ -8,7 +8,15 @@ $our_app $mol_book2_catalog
 			uri \https://t.me/h_y_o_o/4484
 	spreads *
 		- auth <= Auth $mol_page
-		shows <= Shows $mol_page
+		- Шоу, которые предстоят и текущий статус к ним
+		show <= Show $mol_page
 			title \Шоу
+		- Список игр, которые доступны в шоу
 		games <= Games $mol_page
 			title \Игры
+		- Профиль разработчика для добавления игр в шоу
+		dev <= Dev $mol_page
+			title \Разработчик
+		- Профиль организаторов. Список игр, статус шоу, обратная связь
+		org <= Org $mol_page
+			title \Организатор
