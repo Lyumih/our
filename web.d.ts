@@ -1997,8 +1997,10 @@ declare namespace $ {
         GitHub(): $mol_link_source;
         Telegram_icon(): $mol_icon_telegram;
         Telegram(): $$.$mol_link;
-        Shows(): $mol_page;
+        Show(): $mol_page;
         Games(): $mol_page;
+        Dev(): $mol_page;
+        Org(): $mol_page;
     }
 }
 

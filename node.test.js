@@ -7263,8 +7263,10 @@ var $;
         }
         spreads() {
             return {
-                shows: this.Shows(),
-                games: this.Games()
+                show: this.Show(),
+                games: this.Games(),
+                dev: this.Dev(),
+                org: this.Org()
             };
         }
         GitHub() {
@@ -7284,7 +7286,7 @@ var $;
             obj.uri = () => "https://t.me/h_y_o_o/4484";
             return obj;
         }
-        Shows() {
+        Show() {
             const obj = new this.$.$mol_page();
             obj.title = () => "Шоу";
             return obj;
@@ -7292,6 +7294,16 @@ var $;
         Games() {
             const obj = new this.$.$mol_page();
             obj.title = () => "Игры";
+            return obj;
+        }
+        Dev() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Разработчик";
+            return obj;
+        }
+        Org() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Организатор";
             return obj;
         }
     }
@@ -7306,10 +7318,16 @@ var $;
     ], $our_app.prototype, "Telegram", null);
     __decorate([
         $mol_mem
-    ], $our_app.prototype, "Shows", null);
+    ], $our_app.prototype, "Show", null);
     __decorate([
         $mol_mem
     ], $our_app.prototype, "Games", null);
+    __decorate([
+        $mol_mem
+    ], $our_app.prototype, "Dev", null);
+    __decorate([
+        $mol_mem
+    ], $our_app.prototype, "Org", null);
     $.$our_app = $our_app;
 })($ || ($ = {}));
 //our/app/-view.tree/app.view.tree.ts
