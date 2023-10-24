@@ -2,9 +2,60 @@ $our_app_dev $mol_book2_catalog
 	menu_title \Разработчик*
 	param \dev
 	spreads *
-		profile <= Profile $mol_page
+		profile <= Profile_page $mol_page
 			title \Профиль
+			body /
+				<= Profile_form $mol_form
+					form_fields /
+						<= Name_control $mol_string
+							hint \Имя компании
+						<= Country_control $mol_string
+							hint \Страна
+						<= Telegram_control $mol_string
+							hint \Телеграм
+					buttons /
+						<= Update_profile $mol_button_major
+							title \Обновить профиль
 		games <= Games $mol_page
 			title \Игры
+			body /
+				<= Game_list $mol_list rows /
+					- Список игр и их прикрепление к шоу
+					<= Game_1 $mol_text text \Игра "Василиса и Баба Яга". **Наши игры 2023**
+					<= Game_2 $mol_text text \Игра "Василиса и Кот учёный"
+				<= Game_form $mol_form
+					form_fields /
+						<= Game_name_control $mol_string
+							hint \Имя игры
+						<= Game_genre_control $mol_string
+							hint \Жанр игры
+						<= Game_description_control $mol_string
+							hint \Описание игры
+						<= Game_social_control $mol_string
+							hint \Соцсеть
+						<= Game_youtube_control $mol_string
+							hint \Youtube
+						<= Game_steam_control $mol_string
+							hint \Steam
+						<= Game_vk_control $mol_string
+							hint \Vk
+						<= Game_date_control $mol_string
+							hint \Дата выхода
+					buttons /
+						<= Game_add $mol_button_major
+							title \Обновить игру
+						<= Game_show $mol_button_minor
+							title \Прикрепить к шоу
 		show <= Show $mol_page
 			title \Шоу
+			body /
+				<= Show_text $mol_text text \
+					\Список игр, к которым будет прикреплена игра
+					\# Наши игры 2023
+					\### Игра "Василиса и Баба Яга".
+					\*Ваша заявка на рассмотрении*
+					\Обратная связь:
+					\- В трейлере нужно добавить геймплей
+					\- Нужно добавить русские субтитры
+				<= Update_show $mol_button_major
+					title \Сделаны доработки по обратной связи
