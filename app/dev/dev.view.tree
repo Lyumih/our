@@ -1,0 +1,10 @@
+$our_app_dev $mol_book2_catalog
+	menu_title \Разработчик*
+	param \dev
+	spreads *
+		profile <= Profile $mol_page
+			title \Профиль
+		games <= Games $mol_page
+			title \Игры
+		show <= Show $mol_page
+			title \Шоу

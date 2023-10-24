@@ -17,8 +17,7 @@ $our_app $mol_book2_catalog
 			title \Игры
 			body / <= Game_text $mol_text text \Список игр, которые будут участвовать в шоу
 		- Профиль разработчика для добавления игр в шоу
-		dev <= Dev $mol_page
-			title \Разработчик
+		dev <= Dev $our_app_dev
 		- Профиль организаторов. Список игр, статус шоу, обратная связь
 		org <= Org $mol_page
-			title \Организатор
+			title \Организатор**
