@@ -674,10 +674,7 @@ $mol_text_span $mol_paragraph
 		^
 		mol_text_type <= type \
 
-$mol_button_major $mol_button_typed
-	attr *
-		^
-		mol_theme \$mol_theme_accent
+$mol_button_major $mol_button_minor
 
 $mol_row $mol_view
 
