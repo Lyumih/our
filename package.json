@@ -201,6 +201,7 @@
     "$mol_embed_youtube",
     "$mol_icon_youtube",
     "$mol_frame",
+    "$mol_expander",
     "$our_app_dev",
     "$mol_button_major",
     "$mol_form",
