@@ -220,6 +220,7 @@
     "$our_app_dev",
     "$mol_button_major",
     "$mol_form",
+    "$mol_status",
     "$mol_row",
     "$mol_form_field",
     "$mol_labeler",
