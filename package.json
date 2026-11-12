@@ -234,6 +234,7 @@
     "$mol_row",
     "$mol_form_field",
     "$mol_labeler",
+    "$mol_error_fence",
     "$our_app_org",
     "$mol_textarea"
   ],
